@@ -1,14 +1,14 @@
 import { Hono } from 'hono'
 import { getTemporalIndex } from '../services/dateService.js'
 
-const easter = new Hono()
+const temporal = new Hono()
 
-easter.get('/', (c) => {
+temporal.get('/', (c) => {
   const date = c.req.query('date')
-  const answer = getTemporalIndex(date)
+  const temporalIndex = getTemporalIndex(date)
   return c.json({
-    answer
+    temporalIndex
   })
 })
 
-export default easter
+export default temporal

@@ -47,3 +47,18 @@ export function addDaysToISO (dateStr, days) {
     day: date.getDate()
   })
 }
+
+/**
+ * Calculate difference in days between two ISO date strings
+ * @param {string} dateStr1
+ * @param {string} dateStr2
+ * @returns {number}
+ */
+export function diffDays (dateStr1, dateStr2) {
+  const { year: y1, month: m1, day: d1 } = formatISOToYMD(dateStr1)
+  const { year: y2, month: m2, day: d2 } = formatISOToYMD(dateStr2)
+  const date1 = new Date(y1, m1 - 1, d1)
+  const date2 = new Date(y2, m2 - 1, d2)
+  const diff = date2 - date1
+  return Math.round(diff / (1000 * 60 * 60 * 24))
+}

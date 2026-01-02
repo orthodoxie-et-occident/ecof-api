@@ -1,4 +1,4 @@
-import { formatISOToYMD, formatYMDToISO, addDaysToISO } from '../utils/dates.js'
+import { formatISOToYMD, formatYMDToISO, addDaysToISO, diffDays } from '../utils/dates.js'
 
 /**
  * Get ISO formatted Easter date (YYYY-MM-DD) for a given year
@@ -43,5 +43,17 @@ export function getTemporalIndex (dateStr) {
   const daysToSubtract = christmasDayOfWeek + 49
   const secondLastSundayAfterPentecost = addDaysToISO(christmas, -daysToSubtract)
   const saintSylvester = formatYMDToISO({ year, month: 12, day: 31 })
-  return { septuagesimaSunday, secondLastSundayAfterPentecost, christmas, saintSylvester }
+  let seasonIndex = 0
+  let dayIndex = 0
+  if (dateStr > secondLastSundayAfterPentecost && dateStr <= saintSylvester) {
+    seasonIndex = 1000
+    dayIndex = diffDays(secondLastSundayAfterPentecost, dateStr)
+  } else if (dateStr >= septuagesimaSunday && dateStr <= secondLastSundayAfterPentecost) {
+    seasonIndex = 2000
+    dayIndex = diffDays(septuagesimaSunday, dateStr) + 1
+  } else if (dateStr < septuagesimaSunday) {
+    seasonIndex = 3000
+    dayIndex = ''
+  }
+  return +(seasonIndex + dayIndex)
 }

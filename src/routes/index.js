@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
-import easterRoute from './easterRoute.js'
+import temporalIndex from './temporalRoute.js'
 
 const routes = new Hono()
 
-routes.route('/api/easter', easterRoute)
+routes.route('/api/temporal', temporalIndex)
 
 export default routes
