@@ -42,18 +42,23 @@ export function getTemporalIndex(dateStr) {
     const christmasDayOfWeek = christmasDate.getDay()
     const daysToSubtract = christmasDayOfWeek + 49
     const secondLastSundayAfterPentecost = addDaysToISO(christmas, -daysToSubtract)
-    const saintSylvester = formatYMDToISO({ year, month: 12, day: 31 })
     let seasonIndex = 0
     let dayIndex = 0
-    if (dateStr > secondLastSundayAfterPentecost && dateStr <= saintSylvester) {
+    if (dateStr > secondLastSundayAfterPentecost && dateStr <= christmas) {
         seasonIndex = 1000
         dayIndex = diffDays(secondLastSundayAfterPentecost, dateStr)
-    } else if (dateStr >= septuagesimaSunday && dateStr <= secondLastSundayAfterPentecost) {
+    } else if (dateStr > christmas) {
+        seasonIndex = 1500
+        dayIndex = diffDays()
+    } else if (dateStr < septuagesimaSunday) {
+        seasonIndex = 1500
+        dayIndex = diffDays()
+    }
+    else if (dateStr >= septuagesimaSunday && dateStr <= secondLastSundayAfterPentecost) {
         seasonIndex = 2000
         dayIndex = diffDays(septuagesimaSunday, dateStr) + 1
     } else if (dateStr < septuagesimaSunday) {
-        seasonIndex = 3000
-        dayIndex = ''
+        seasonIndex = 300
     }
     return +(seasonIndex + dayIndex)
 }
