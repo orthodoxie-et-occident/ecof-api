@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
-import indexes from './indexesRoute.js'
+import calendar from './calendarRoute.js'
 
 const routes = new Hono()
 
-routes.route('/api/indexes', indexes)
+routes.route('/api/calendar', calendar)
 
 export default routes
