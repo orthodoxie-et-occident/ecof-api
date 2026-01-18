@@ -1,11 +1,11 @@
-import { Hono } from 'hono'
-import routes from './routes/index.js'
+import { Hono } from "hono"
+import routes from "./routes/index.js"
 
 const app = new Hono()
 
-app.route('/', routes)
+app.route("/", routes)
 
 export default {
-  port: process.env.PORT || 3000,
-  fetch: app.fetch
+    port: process.env.PORT || 3000,
+    fetch: app.fetch,
 }

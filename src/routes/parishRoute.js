@@ -1,10 +1,10 @@
-import { Hono } from 'hono'
-import { getParishInfo } from '../services/parishService.js'
+import { Hono } from "hono"
+import { getParishInfo } from "../services/parishService.js"
 
 const parish = new Hono()
 
-parish.get('/:city', async (c) => {
-    const city = c.req.param('city')
+parish.get("/:city", async (c) => {
+    const city = c.req.param("city")
     const events = await getParishInfo(city)
     return c.json(events)
 })
