@@ -10,8 +10,7 @@
     },
     "dependencies": {
         "hono": "^4.11.4",
-        "ical.js": "^2.2.1",
-        "mysql2": "^3.16.0"
+        "ical.js": "^2.2.1"
     },
     "devDependencies": {
         "oxfmt": "^0.24.0",
