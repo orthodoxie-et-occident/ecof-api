@@ -1,7 +1,7 @@
 import { Hono } from "hono"
 import calendar from "./calendar.js"
 import parish from "./parish.js"
-import vita from "./vitas.js"
+import vita from "./vita.js"
 
 const routes = new Hono()
 
