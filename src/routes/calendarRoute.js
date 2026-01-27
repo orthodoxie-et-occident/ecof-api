@@ -3,8 +3,8 @@ import { getCalendarInfo } from "../services/calendarService.js"
 
 const calendar = new Hono()
 
-calendar.get("/", async (c) => {
-    const date = c.req.query("date")
+calendar.get("/:date", async (c) => {
+    const date = c.req.param("date")
     const calendarInfo = await getCalendarInfo(date)
     return c.json(calendarInfo)
 })
