@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { getParishInfo } from "../services/parishService.js"
+import { getParishInfo } from "../services/parish.js"
 
 const parish = new Hono()
 

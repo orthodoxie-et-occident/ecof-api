@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { getVita } from "../services/vitaService.js"
+import { getVita } from "../services/vita.js"
 
 const vita = new Hono()
 

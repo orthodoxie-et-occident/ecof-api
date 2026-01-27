@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { getCalendarInfo } from "../services/calendarService.js"
+import { getCalendarInfo } from "../services/calendar.js"
 
 const calendar = new Hono()
 

@@ -1,5 +1,5 @@
-import { formatISOToYMD, formatYMDToISO, addDaysToISO, diffDays } from "../utils/datesUtil.js"
-import { calendarRepository } from "../repositories/calendarRepository.js"
+import { formatISOToYMD, formatYMDToISO, addDaysToISO, diffDays } from "../utils/dates.js"
+import { calendar } from "../repositories/calendar.js"
 
 /**
  * Get ISO formatted Easter date (YYYY-MM-DD) for a given year
@@ -87,11 +87,7 @@ export async function getCalendarInfo(date) {
     const temporalIndex = getTemporalIndex(date)
     const sanctoralIndex = getSanctoralIndex(date)
     const { month, day } = formatISOToYMD(date)
-    const [synaxar, readingsTemp, readingsSanct] = await Promise.all([
-        calendarRepository.getSynaxar(month, day),
-        calendarRepository.getTemporalReadings(temporalIndex),
-        calendarRepository.getSanctoralReadings(sanctoralIndex),
-    ])
+    const [synaxar, readingsTemp, readingsSanct] = await Promise.all([calendar.getSynaxar(month, day), calendar.getTemporalReadings(temporalIndex), calendar.getSanctoralReadings(sanctoralIndex)])
     return {
         synaxar,
         readings: {

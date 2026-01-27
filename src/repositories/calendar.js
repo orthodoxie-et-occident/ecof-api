@@ -1,6 +1,6 @@
-import { db } from "../utils/databaseUtil.js"
+import { db } from "../utils/database.js"
 
-export const calendarRepository = {
+export const calendar = {
     async getSynaxar(month, day) {
         const rows = await db`
             SELECT synaxaire.principal, synaxaire.prefixe, synaxaire.saint, 
