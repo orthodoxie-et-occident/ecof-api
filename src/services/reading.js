@@ -2,7 +2,7 @@ import { readings } from "../repositories/reading.js"
 
 /**
  * Get a given reading
- * @param {number} id
+ * @param {string} id
  * @returns {Promise<Object>}
  */
 export async function getReading(id) {
