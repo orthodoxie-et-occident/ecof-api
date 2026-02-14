@@ -1,6 +1,6 @@
 import ICAL from "ical.js"
 
-const calendars = {
+const calendars: Record<string, string> = {
     angers: "https://calendar.google.com/calendar/ical/a0b13b9efa661c4e7043a1e1393ab17998b1c203459e612f07b454163b8c1471%40group.calendar.google.com/public/basic.ics",
     bordeaux: "https://calendar.google.com/calendar/ical/daba7ddef4ffb00d8fb28e21aab4cd5a63b1f895bac030fef1c375f99873dd60@group.calendar.google.com/public/basic.ics",
     amboise: "https://calendar.google.com/calendar/ical/02c5d4a8aa1e221ea68a73bb6c6843b6c1406b6305ffe2709342f939f8af9c3d@group.calendar.google.com/public/basic.ics",
@@ -14,9 +14,7 @@ const calendars = {
     grenoble: "https://p126-caldav.icloud.com/published/2/MTIwNjA2MTU3OTEyMDYwNslsLAbTXDEyQ3nzhZH4CU-QMn3vxNaC9YK5Y-YGcahz7E5HLEPO2r3F3gMviLU1cngfNABRAK2LEfTtWzgZ1io",
     montpellier: "https://calendar.google.com/calendar/ical/paroissetheophanie.ecof%40gmail.com/public/basic.ics",
     lisieux: "https://calendar.google.com/calendar/ical/2f99103a78d9eb2c14d2ca0bb7b9f0ca1a9381c5f2875689f08503b7c8d6af3c@group.calendar.google.com/public/basic.ics",
-} as const
-
-type City = keyof typeof calendars
+}
 
 type CalendarEvent = {
     title: string
@@ -31,8 +29,13 @@ type ParishInfo = {
     events: CalendarEvent[]
 }
 
-export async function getParishInfo(city: City): Promise<ParishInfo> {
-    const url: string = calendars[city]
+export async function getParishInfo(city: string): Promise<ParishInfo> {
+    const url = calendars[city]
+
+    if (!url) {
+        throw new Error(`City not found: ${city}`)
+    }
+
     const response = await fetch(url)
     const icsText = await response.text()
     const jcalData = ICAL.parse(icsText)

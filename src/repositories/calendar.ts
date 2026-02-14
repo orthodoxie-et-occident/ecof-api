@@ -1,7 +1,7 @@
 import { db } from "../utils/database.js"
 
 export const calendar = {
-    async getSynaxar(month, day) {
+    async getSynaxar(month: number, day: number) {
         const rows = await db`
             SELECT synaxaire.principal, synaxaire.prefixe, synaxaire.saint, 
                    vies.id
@@ -13,7 +13,7 @@ export const calendar = {
         return rows
     },
 
-    async getTemporalReadings(temporalIndex) {
+    async getTemporalReadings(temporalIndex: number) {
         const rows = await db`
             SELECT temporal.id, temporal.book_txt
             FROM temporal 
@@ -24,7 +24,7 @@ export const calendar = {
         return rows
     },
 
-    async getSanctoralReadings(sanctoralIndex) {
+    async getSanctoralReadings(sanctoralIndex: number) {
         const rows = await db`
             SELECT sanctoral.id, sanctoral.book_txt
             FROM sanctoral 
