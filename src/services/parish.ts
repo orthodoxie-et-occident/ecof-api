@@ -42,23 +42,59 @@ export async function getParishInfo(city: string): Promise<ParishInfo> {
     const comp = new ICAL.Component(jcalData)
     const vevents = comp.getAllSubcomponents("vevent")
 
-    const allEvents: CalendarEvent[] = vevents.map((vevent) => {
-        const event = new ICAL.Event(vevent)
-        return {
-            title: event.summary,
-            start: event.startDate.toJSDate(),
-            end: event.endDate.toJSDate(),
-            description: event.description,
-            location: event.location,
-            uid: event.uid,
-        }
-    })
-
     const now = new Date()
-    const upcomingEvents = allEvents.filter((event) => {
-        return new Date(event.end) >= now
-    })
+    const maxDate = new Date(now)
+    maxDate.setFullYear(maxDate.getFullYear() + 1) // horizon d'un an
 
+    const allEvents: CalendarEvent[] = []
+
+    for (const vevent of vevents) {
+        const event = new ICAL.Event(vevent)
+
+        if (event.isRecurring()) {
+            // Développer toutes les occurrences dans la fenêtre [now, maxDate]
+            const expand = new ICAL.RecurExpansion({
+                component: vevent,
+                dtstart: event.startDate,
+            })
+
+            const duration = event.endDate.subtractDate(event.startDate)
+
+            let next: ICAL.Time | null
+            while ((next = expand.next())) {
+                const startJS = next.toJSDate()
+
+                if (startJS > maxDate) break
+
+                const endTime = next.clone()
+                endTime.addDuration(duration)
+                const endJS = endTime.toJSDate()
+
+                if (endJS < now) continue
+
+                allEvents.push({
+                    title: event.summary,
+                    start: startJS,
+                    end: endJS,
+                    description: event.description,
+                    location: event.location,
+                    uid: event.uid,
+                })
+            }
+        } else {
+            // Événement simple, comportement inchangé
+            allEvents.push({
+                title: event.summary,
+                start: event.startDate.toJSDate(),
+                end: event.endDate.toJSDate(),
+                description: event.description,
+                location: event.location,
+                uid: event.uid,
+            })
+        }
+    }
+
+    const upcomingEvents = allEvents.filter((event) => event.end >= now)
     upcomingEvents.sort((a, b) => a.start.getTime() - b.start.getTime())
 
     return { events: upcomingEvents }
