@@ -16,9 +16,9 @@ export const synaxarVita = {
 
         return {
             ...row,
+            vie_b: parseMarkdown(row.vie_b),
             vita_long: parseMarkdown(row.vita_long),
             vita_liturgy: parseMarkdown(row.vita_liturgy),
-            // vie_b reste en texte brut si tu ne veux pas le formatter
         }
     },
 }
