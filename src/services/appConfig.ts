@@ -6,7 +6,7 @@ export function getAppConfig() {
                 minimum: "1.0.0",
             },
             android: {
-                latest: "1.0.0",
+                latest: "3.0.0",
                 minimum: "1.0.0",
             },
         },
