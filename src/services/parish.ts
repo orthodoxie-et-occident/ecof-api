@@ -9,6 +9,8 @@ const calendars: Record<string, string> = {
     stloup: "https://calendar.google.com/calendar/ical/fe0500e4cb7f078423e6384532189da56fd79192b150997a12417fa9b0aab91e@group.calendar.google.com/public/basic.ics",
     vannes: "https://calendar.google.com/calendar/ical/5f85b9b3b200d75b471e0cb23d2caa25acf6dba6f01af9f05f70763cb170707d@group.calendar.google.com/public/basic.ics",
     paris: "https://calendar.google.com/calendar/ical/7236a9f3fe473b7df99018e4a6142c51dc1fee1cbd3904aa1fc594ec61503b47@group.calendar.google.com/public/basic.ics",
+    stebaume:
+        "https://calendar.google.com/calendar/ical/755ebdf4c6e1600dd39b9d226557923b6d0029d2b079610a0fa77b69d2748ed7%40group.calendar.google.com/private-4e70e32b7b40b2f597ae7dc02384bef0/basic.ics",
     poitiers: "https://calendar.google.com/calendar/ical/38a124bdb03a1be8ceda0be59b4fb4e29cb7287e7ea22f5fe3c8a6e7b8130cd8@group.calendar.google.com/public/basic.ics",
     lyon: "https://calendar.google.com/calendar/ical/20b89722813c59cd0a2fdc2ef3a81b257f240f616fc5638330f10ed5d010f765%40group.calendar.google.com/public/basic.ics",
     grenoble: "https://p126-caldav.icloud.com/published/2/MTIwNjA2MTU3OTEyMDYwNslsLAbTXDEyQ3nzhZH4CU-QMn3vxNaC9YK5Y-YGcahz7E5HLEPO2r3F3gMviLU1cngfNABRAK2LEfTtWzgZ1io",
