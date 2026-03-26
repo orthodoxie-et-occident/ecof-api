@@ -33,6 +33,10 @@ synaxarRoutes.get("/", async (c) => {
             text-align: left;
             border-bottom: 1px solid #3c3836;
         }
+
+        td:not(:first-child):not(:nth-child(2)) {
+            text-align: center;
+        }
         
         th {
             color: #fabd2f;
@@ -40,20 +44,26 @@ synaxarRoutes.get("/", async (c) => {
             border-bottom: 2px solid #3c3836;
         }
         
-        .green {
-            background: #6fa76f;
+        .green, .red {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
         }
-        
-        .red {
-            background: #a85555;
-        }
+
+        .green { background: #6fa76f; }
+        .red   { background: #a85555; }
     </style>
 </head>
 <body>
     <table>
         <thead>
             <tr>
-                <th>Saints</th>
+                <th>Saint(s)</th>
+                <th>Identifiant</th>
+                <th>Vie breve</th>
+                <th>Vie longue</th>
                 <th>Vie liturgique</th>
             </tr>
         </thead>
@@ -63,7 +73,10 @@ synaxarRoutes.get("/", async (c) => {
                     (s: any) => `
                 <tr>
                     <td>${s.saint}</td>
-                    <td class="${s.has_biography ? "green" : "red"}"></td>
+                    <td>${s.vies_id}</td>
+                    <td><span class="${s.has_vie_b ? "green" : "red"}"></span></td>
+                    <td><span class="${s.has_vita_long ? "green" : "red"}"></span></td>
+                    <td><span class="${s.has_vita_liturgy ? "green" : "red"}"></span></td>
                 </tr>
             `,
                 )
