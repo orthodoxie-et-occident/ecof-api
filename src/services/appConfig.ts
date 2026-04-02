@@ -2,12 +2,12 @@ export function getAppConfig() {
     return {
         versions: {
             ios: {
-                latest: "1.0.1",
-                minimum: "1.0.0",
+                latest: "3.2.0",
+                minimum: "3.0.0",
             },
             android: {
-                latest: "1.0.1",
-                minimum: "1.0.0",
+                latest: "3.2.0",
+                minimum: "3.0.0",
             },
         },
         store_urls: {
