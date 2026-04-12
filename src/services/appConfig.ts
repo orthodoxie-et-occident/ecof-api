@@ -2,11 +2,11 @@ export function getAppConfig() {
     return {
         versions: {
             ios: {
-                latest: "3.2.0",
+                latest: "3.2.6",
                 minimum: "3.0.0",
             },
             android: {
-                latest: "3.2.0",
+                latest: "3.2.6",
                 minimum: "3.0.0",
             },
         },
