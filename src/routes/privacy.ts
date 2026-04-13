@@ -5,17 +5,76 @@ const privacy = new Hono()
 privacy.get("/", (c) => {
     return c.html(`
 <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset='utf-8'>
-      <meta name='viewport' content='width=device-width'>
-      <title>Privacy Policy</title>
-      <style> body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:1em; } </style>
-    </head>
-    <body>
-    <strong>Privacy Policy</strong><p>This privacy policy applies to the ECOF app (hereby referred to as "Application") for mobile devices that was created by Jacques Raoult (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".</p><br><strong>Information Collection and Use</strong><p>The Application collects information when you download and use it. This information may include information such as </p><ul><li>Your device's Internet Protocol address (e.g. IP address)</li><li>The pages of the Application that you visit, the time and date of your visit, the time spent on those pages</li><li>The time spent on the Application</li><li>The operating system you use on your mobile device</li></ul><p></p><br><p>The Application does not gather precise information about the location of your mobile device.</p><!----><br><p>The Application does not use Artificial Intelligence (AI) technologies to process your data or provide features.</p><br><p>The Service Provider may use the information you provided to contact you from time to time to provide you with important information, required notices and marketing promotions.</p><br><p>For a better experience, while using the Application, the Service Provider may require you to provide us with certain personally identifiable information. The information that the Service Provider request will be retained by them and used as described in this privacy policy.</p><br><strong>Third Party Access</strong><p>Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.</p><!----><br><p>The Service Provider may disclose User Provided and Automatically Collected Information:</p><ul><li>as required by law, such as to comply with a subpoena, or similar legal process;</li><li>when they believe in good faith that disclosure is necessary to protect their rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;</li><li>with their trusted services providers who work on their behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.</li></ul><p></p><br><strong>Opt-Out Rights</strong><p>You can stop all collection of information by the Application easily by uninstalling it. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.</p><br><strong>Data Retention Policy</strong><p>The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at contact@ecof.app and they will respond in a reasonable time.</p><br><strong>Children</strong><p>The Service Provider does not use the Application to knowingly solicit data from or market to children under the age of 13.</p><div><br><p>The Service Provider does not knowingly collect personally identifiable information from children. The Service Provider encourages all children to never submit any personally identifiable information through the Application and/or Services. The Service Provider encourage parents and legal guardians to monitor their children's Internet usage and to help enforce this Policy by instructing their children never to provide personally identifiable information through the Application and/or Services without their permission. If you have reason to believe that a child has provided personally identifiable information to the Service Provider through the Application and/or Services, please contact the Service Provider <span>(contact@ecof.app)</span> so that they will be able to take the necessary actions. You must also be at least 16 years of age to consent to the processing of your personally identifiable information in your country (in some countries we may allow your parent or guardian to do so on your behalf).</p></div><br><strong>Security</strong><p>The Service Provider is concerned about safeguarding the confidentiality of your information. The Service Provider provides physical, electronic, and procedural safeguards to protect information the Service Provider processes and maintains.</p><br><strong>Changes</strong><p>This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p><br><p>This privacy policy is effective as of 2026-03-11</p><br><strong>Your Consent</strong><p>By using the Application, you are consenting to the processing of your information as set forth in this Privacy Policy now and as amended by us.</p><br><strong>Contact Us</strong><p>If you have any questions regarding privacy while using the Application, or have questions about the practices, please contact the Service Provider via email at contact@ecof.app.</p><hr><p>This privacy policy page was generated by <a href="https://app-privacy-policy-generator.nisrulz.com/" target="_blank" rel="noopener noreferrer">App Privacy Policy Generator</a></p>
-    </body>
-    </html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width'>
+  <title>Politique de confidentialité / Privacy Policy - ECOF</title>
+  <style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 1em; max-width: 700px; margin: auto; }
+    h1 { font-size: 1.3em; }
+    .section-title { display: block; font-weight: bold; margin-top: 1.2em; margin-bottom: 0.3em; }
+    hr { border: none; border-top: 2px solid #ddd; margin: 3em 0; }
+    .lang { font-size: 0.75em; color: #999; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5em; }
+    a { color: #007aff; }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== FRANÇAIS ===================== -->
+  <div class="lang">🇫🇷 Français</div>
+  <span class="section-title">Politique de confidentialité</span>
+  <p>Cette politique de confidentialité s'applique à l'application ECOF, créée par Jacques Raoult en tant que service gratuit.</p>
+
+  <span class="section-title">Collecte de données</span>
+  <p>L'application ECOF <strong>ne collecte, ne stocke et ne transmet aucune donnée personnelle</strong> de ses utilisateurs.</p>
+  <p>Aucun compte utilisateur n'est requis. Aucune information personnelle n'est demandée ou enregistrée par le Prestataire.</p>
+
+  <span class="section-title">Données collectées par les plateformes de distribution</span>
+  <p>Les plateformes de distribution (Apple App Store, Google Play Store) peuvent collecter certaines données techniques dans le cadre de leur propre fonctionnement (téléchargements, statistiques d'utilisation agrégées, etc.). Ces données sont soumises aux politiques de confidentialité respectives d'Apple et de Google, sur lesquelles le Prestataire n'a aucun contrôle.</p>
+  <ul>
+    <li><a href="https://www.apple.com/fr/privacy/" target="_blank">Politique de confidentialité Apple</a></li>
+    <li><a href="https://policies.google.com/privacy" target="_blank">Politique de confidentialité Google</a></li>
+  </ul>
+
+  <span class="section-title">Enfants</span>
+  <p>L'application ne collecte aucune donnée, y compris auprès des enfants de moins de 13 ans.</p>
+
+  <span class="section-title">Modifications</span>
+  <p>Cette politique peut être mise à jour. Vous êtes invité à la consulter régulièrement. En vigueur depuis le 14/04/2026.</p>
+
+  <span class="section-title">Nous contacter</span>
+  <p>Pour toute question : <a href="mailto:contact@ecof.app">contact@ecof.app</a></p>
+
+  <hr>
+
+  <!-- ===================== ENGLISH ===================== -->
+  <div class="lang">🇬🇧 English</div>
+  <span class="section-title">Privacy Policy</span>
+  <p>This privacy policy applies to the ECOF app, created by Jacques Raoult as a free service.</p>
+
+  <span class="section-title">Data Collection</span>
+  <p>The ECOF app <strong>does not collect, store or transmit any personal data</strong> from its users.</p>
+  <p>No user account is required. No personal information is requested or stored by the Service Provider.</p>
+
+  <span class="section-title">Data Collected by Distribution Platforms</span>
+  <p>Distribution platforms (Apple App Store, Google Play Store) may collect certain technical data as part of their own operations (downloads, aggregated usage statistics, etc.). This data is subject to Apple's and Google's respective privacy policies, over which the Service Provider has no control.</p>
+  <ul>
+    <li><a href="https://www.apple.com/privacy/" target="_blank">Apple Privacy Policy</a></li>
+    <li><a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
+  </ul>
+
+  <span class="section-title">Children</span>
+  <p>The app does not collect any data, including from children under the age of 13.</p>
+
+  <span class="section-title">Changes</span>
+  <p>This Privacy Policy may be updated from time to time. Effective as of 04/14/2026.</p>
+
+  <span class="section-title">Contact Us</span>
+  <p>For any questions: <a href="mailto:contact@ecof.app">contact@ecof.app</a></p>
+
+</body>
+</html>
   `)
 })
 
