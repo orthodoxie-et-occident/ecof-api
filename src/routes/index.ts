@@ -12,6 +12,7 @@ import privacy from "./privacy"
 import support from "./support"
 import monitoredVitas from "./vitaMonitoring"
 import appConfigRouter from "./appConfig"
+import mapData from "./mapData"
 
 const routes = new Hono()
 
@@ -29,5 +30,6 @@ routes.route("/api/privacy", privacy)
 routes.route("/api/support", support)
 routes.route("api/monitoring", monitoredVitas)
 routes.route("/api/app-config", appConfigRouter)
+routes.route("/api/map-data", mapData)
 
 export default routes
