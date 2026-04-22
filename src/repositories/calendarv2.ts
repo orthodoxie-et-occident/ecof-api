@@ -8,11 +8,9 @@ type SanctoralRow = { id: number; book_txt: string }
 export const calendar = {
     async getSynaxar(month: number, day: number) {
         const rows = await db`
-            SELECT synaxaire.principal, synaxaire.prefixe, synaxaire.saint, 
-                   vies.id
+            SELECT principal, prefixe, saint, id
             FROM synaxaire
-            JOIN vies ON synaxaire.vies_id = vies.id
-            WHERE mois = ${month} AND jour = ${day} 
+            WHERE mois = ${month} AND jour = ${day}
               AND principal IN (0, 1) AND calendrier != 0
         `
         return rows as SynaxarRow[]
