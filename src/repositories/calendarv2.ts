@@ -17,11 +17,11 @@ export const calendar = {
 
     async getTemporalReadings(temporalIndex: number) {
         const rows = await db`
-            SELECT temporal.id, temporal.block, temporal.book_txt, blocks.block_title
-            FROM temporal 
-            JOIN blocks ON temporal.block = block_id
-            WHERE temporalIndex = ${temporalIndex}
-            ORDER BY temporal.id ASC
+            SELECT readings.id, readings.block, readings.book_txt, blocks.block_title
+            FROM readings 
+            JOIN blocks ON readings.block = block_id
+            WHERE dayIndex = ${temporalIndex}
+            ORDER BY readings.id ASC
         `
 
         const grouped = (rows as TemporalRow[]).reduce((acc: Record<string, TemporalBlock & { _minId: number }>, row: TemporalRow) => {
@@ -40,11 +40,11 @@ export const calendar = {
 
     async getSanctoralReadings(sanctoralIndex: number) {
         const rows = await db`
-            SELECT temporal.id, temporal.block, temporal.book_txt, blocks.block_title
-            FROM temporal 
-            JOIN blocks ON temporal.block = block_id
-            WHERE temporalIndex = ${sanctoralIndex}
-            ORDER BY temporal.id ASC
+            SELECT readings.id, readings.block, readings.book_txt, blocks.block_title
+            FROM readings 
+            JOIN blocks ON readings.block = block_id
+            WHERE dayIndex = ${sanctoralIndex}
+            ORDER BY readings.id ASC
         `
 
         const grouped = (rows as TemporalRow[]).reduce((acc: Record<string, TemporalBlock & { _minId: number }>, row: TemporalRow) => {
