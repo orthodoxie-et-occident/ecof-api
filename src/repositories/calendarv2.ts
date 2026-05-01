@@ -18,9 +18,9 @@ export const calendar = {
 
     async getTemporalReadings(temporalIndex: number) {
         const rows = await db`
-        SELECT temporal.id, temporal.block, temporal.book_txt, temporal_blocks.block_title
+        SELECT temporal.id, temporal.block, temporal.book_txt, blocks.block_title
         FROM temporal 
-        JOIN temporal_blocks ON temporal.block = block_id
+        JOIN blocks ON temporal.block = block_id
         WHERE temporalIndex = ${temporalIndex}
         ORDER BY temporal.id ASC
     `
@@ -43,7 +43,7 @@ export const calendar = {
         const rows = await db`
             SELECT sanctoral.id, sanctoral.book_txt
             FROM sanctoral 
-            JOIN sanctoral_blocks ON sanctoral.block = block_id
+            JOIN blocks ON sanctoral.block = block_id
             WHERE sanctoralIndex = ${sanctoralIndex}
             ORDER BY sanctoral.id ASC
         `
