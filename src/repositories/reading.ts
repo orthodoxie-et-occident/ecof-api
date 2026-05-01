@@ -9,7 +9,7 @@ export const readings = {
     async getScriptureReading(id: string): Promise<ScriptureReading[]> {
         const rows = await db`
       SELECT book_txt, reading
-      FROM temporal
+      FROM readings
       WHERE id = ${id}
     `
         return rows as ScriptureReading[]
