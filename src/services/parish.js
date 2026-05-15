@@ -1,6 +1,6 @@
 import ICAL from "ical.js"
 
-const calendars: Record<string, string> = {
+const calendars = {
     angers: "https://calendar.google.com/calendar/ical/a0b13b9efa661c4e7043a1e1393ab17998b1c203459e612f07b454163b8c1471%40group.calendar.google.com/public/basic.ics",
     bordeaux: "https://calendar.google.com/calendar/ical/daba7ddef4ffb00d8fb28e21aab4cd5a63b1f895bac030fef1c375f99873dd60@group.calendar.google.com/public/basic.ics",
     amboise: "https://calendar.google.com/calendar/ical/02c5d4a8aa1e221ea68a73bb6c6843b6c1406b6305ffe2709342f939f8af9c3d@group.calendar.google.com/public/basic.ics",
@@ -18,20 +18,7 @@ const calendars: Record<string, string> = {
     lisieux: "https://calendar.google.com/calendar/ical/2f99103a78d9eb2c14d2ca0bb7b9f0ca1a9381c5f2875689f08503b7c8d6af3c@group.calendar.google.com/public/basic.ics",
 }
 
-type CalendarEvent = {
-    title: string
-    start: string
-    end: string
-    description: string
-    location: string
-    uid: string
-}
-
-type ParishInfo = {
-    events: CalendarEvent[]
-}
-
-function cleanDescription(raw: string | null | undefined): string {
+function cleanDescription(raw) {
     if (!raw) return ""
     return raw
         .replace(/<br\s*\/?>/gi, "\n")
@@ -47,7 +34,7 @@ function cleanDescription(raw: string | null | undefined): string {
         .trim()
 }
 
-function icalTimeToString(t: ICAL.Time): string {
+function icalTimeToString(t) {
     const jsDate = t.toJSDate()
     const parts = new Intl.DateTimeFormat("fr-FR", {
         timeZone: "Europe/Paris",
@@ -59,11 +46,11 @@ function icalTimeToString(t: ICAL.Time): string {
         second: "2-digit",
         hour12: false,
     }).formatToParts(jsDate)
-    const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "00"
+    const get = (type) => parts.find((p) => p.type === type)?.value ?? "00"
     return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}:${get("second")}`
 }
 
-export async function getParishInfo(city: string): Promise<ParishInfo> {
+export async function getParishInfo(city) {
     const url = calendars[city]
 
     if (!url) {
@@ -83,7 +70,7 @@ export async function getParishInfo(city: string): Promise<ParishInfo> {
         return icalTimeToString(ICAL.Time.fromJSDate(d))
     })()
 
-    const allEvents: CalendarEvent[] = []
+    const allEvents = []
 
     for (const vevent of vevents) {
         const event = new ICAL.Event(vevent)
@@ -96,7 +83,7 @@ export async function getParishInfo(city: string): Promise<ParishInfo> {
 
             const duration = event.endDate.subtractDate(event.startDate)
 
-            let next: ICAL.Time | null
+            let next = null
             while ((next = expand.next())) {
                 const startStr = icalTimeToString(next)
 

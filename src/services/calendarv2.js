@@ -1,7 +1,7 @@
 import { formatISOToYMD, formatYMDToISO, addDaysToISO, diffDays } from "../utils/dates.js"
 import { calendar } from "../repositories/calendarv2.js"
 
-function getEasterDate(year: number) {
+function getEasterDate(year) {
     const n = year % 19
     const c = Math.floor(year / 100)
     const u = year % 100
@@ -23,7 +23,7 @@ function getEasterDate(year: number) {
     })
 }
 
-function getTemporalIndex(dateStr: string) {
+function getTemporalIndex(dateStr) {
     // Calculation for current year
     const { year } = formatISOToYMD(dateStr)
     const easter = getEasterDate(year)
@@ -58,12 +58,12 @@ function getTemporalIndex(dateStr: string) {
     return +(seasonIndex + dayIndex)
 }
 
-function getSanctoralIndex(dateStr: string) {
+function getSanctoralIndex(dateStr) {
     const { month, day } = formatISOToYMD(dateStr)
     return 10000 + month * 100 + day
 }
 
-export async function getCalendarInfo(date: string) {
+export async function getCalendarInfo(date) {
     const temporalIndex = getTemporalIndex(date)
     const sanctoralIndex = getSanctoralIndex(date)
     const { month, day } = formatISOToYMD(date)

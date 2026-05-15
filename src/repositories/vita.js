@@ -2,7 +2,7 @@ import { db } from "../utils/database"
 import { parseMarkdown } from "../utils/markdown"
 
 export const synaxarVita = {
-    async getVita(id: string) {
+    async getVita(id) {
         const rows = await db`
       SELECT v_short as vie_b, v_long as vita_long, v_liturgy as vita_liturgy,
              img, mois, jour,
