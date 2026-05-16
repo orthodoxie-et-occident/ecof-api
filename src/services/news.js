@@ -5,7 +5,7 @@ export async function getNews() {
     return news
 }
 
-export async function getNewsText(id) {
-    const result = await allNews.getNewsText(id)
+export async function getNewsById(id) {
+    const result = await allNews.getNewsById(id)
     return result
 }

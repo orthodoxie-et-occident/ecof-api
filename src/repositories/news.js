@@ -10,11 +10,12 @@ export const allNews = {
         return rows || []
     },
 
-    async getNewsText(id) {
+    async getNewsById(id) {
         const rows = await db`
-      SELECT text
-      FROM news
-      WHERE id = ${id}
+        SELECT title, author, slug, published_at, text
+        FROM news
+        WHERE id = ${id}
+        LIMIT 1
     `
         return rows[0] ?? null
     },
