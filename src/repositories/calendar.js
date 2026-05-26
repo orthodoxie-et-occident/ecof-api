@@ -8,7 +8,6 @@ export const calendar = {
       WHERE mois = ${month} AND jour = ${day}
         AND principal IN (0, 1) AND calendrier != 0
     `
-
         return rows || []
     },
 
@@ -20,7 +19,6 @@ export const calendar = {
       WHERE dayIndex = ${temporalIndex}
       ORDER BY readings.id ASC
     `
-
         const grouped = rows.reduce((acc, row) => {
             const key = row.block
 
@@ -45,6 +43,16 @@ export const calendar = {
             .map(({ _minId, ...block }) => block)
     },
 
+    async getTemporalEvents(temporalIndex) {
+        const rows = await db`
+      SELECT id, text
+      FROM temporal
+      WHERE dayIndex = ${temporalIndex}
+      ORDER BY id ASC
+    `
+        return rows || []
+    },
+
     async getSanctoralReadings(sanctoralIndex) {
         const rows = await db`
       SELECT readings.id, readings.block, readings.book_txt, blocks.block_title
@@ -53,7 +61,6 @@ export const calendar = {
       WHERE dayIndex = ${sanctoralIndex}
       ORDER BY readings.id ASC
     `
-
         const grouped = rows.reduce((acc, row) => {
             const key = row.block
 

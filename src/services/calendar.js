@@ -67,9 +67,24 @@ export async function getCalendarInfo(date) {
     const temporalIndex = getTemporalIndex(date)
     const sanctoralIndex = getSanctoralIndex(date)
     const { month, day } = formatISOToYMD(date)
-    const [synaxar, readingsTemp, readingsSanct] = await Promise.all([calendar.getSynaxar(month, day), calendar.getTemporalReadings(temporalIndex), calendar.getSanctoralReadings(sanctoralIndex)])
+
+    const [synaxar, readingsTemp, readingsSanct, temporalEvents] = await Promise.all([
+        calendar.getSynaxar(month, day),
+        calendar.getTemporalReadings(temporalIndex),
+        calendar.getSanctoralReadings(sanctoralIndex),
+        calendar.getTemporalEvents(temporalIndex),
+    ])
+
     return {
-        synaxar,
+        synaxar: [
+            ...synaxar,
+            ...temporalEvents.map((e) => ({
+                principal: 0,
+                prefixe: e.text,
+                saint: "",
+                id: 0,
+            })),
+        ],
         readings: {
             temporal: readingsTemp,
             sanctoral: readingsSanct,
