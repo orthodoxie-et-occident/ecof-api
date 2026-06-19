@@ -24,11 +24,21 @@ The API is built with [Hono](https://hono.dev/) on the [Bun](https://bun.sh/) ru
 
 ```mermaid
 flowchart LR
-    DB[(MySQL)] --> API["ecof-api (Hono + Bun)"]
-    API --> APP["ecof-app (Ionic Vue + Capacitor)"]
+    DB[(MySQL)] --> API["ecof-api"]
+    API --> APP["ecof-app"]
     APP --> WEB["Web"]
     APP --> AND["Android"]
     APP --> IOS["iOS"]
+ 
+    classDef db fill:#4A6FA5,stroke:#4A6FA5,color:#fff
+    classDef api fill:#6E7681,stroke:#6E7681,color:#fff
+    classDef app fill:#B3995B,stroke:#B3995B,color:#fff
+    classDef device fill:#D4B483,stroke:#D4B483,color:#fff
+ 
+    class DB db
+    class API api
+    class APP app
+    class WEB,AND,IOS device
 ```
 
 ## API Routes
