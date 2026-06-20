@@ -1,10 +1,10 @@
-import { db } from "../utils/database"
+import { db } from "../utils/pg_database"
 
 export const calendar = {
     async getSynaxar(month, day) {
         const rows = await db`
       SELECT principal, prefixe, saint, id
-      FROM synaxaire
+      FROM synaxar
       WHERE mois = ${month} AND jour = ${day}
         AND principal IN (0, 1) AND calendrier != 0
     `
@@ -15,8 +15,8 @@ export const calendar = {
         const rows = await db`
       SELECT readings.id, readings.block, readings.book_txt, blocks.block_title
       FROM readings 
-      JOIN blocks ON readings.block = block_id
-      WHERE dayIndex = ${temporalIndex}
+      JOIN blocks ON readings.block = blocks.block_id
+      WHERE day_index = ${temporalIndex}
       ORDER BY readings.id ASC
     `
         const grouped = rows.reduce((acc, row) => {
@@ -45,9 +45,9 @@ export const calendar = {
 
     async getTemporalEvents(temporalIndex) {
         const rows = await db`
-      SELECT id, text
+      SELECT id, content
       FROM temporal
-      WHERE dayIndex = ${temporalIndex}
+      WHERE day_index = ${temporalIndex}
       ORDER BY id ASC
     `
         return rows || []
@@ -58,7 +58,7 @@ export const calendar = {
       SELECT readings.id, readings.block, readings.book_txt, blocks.block_title
       FROM readings 
       JOIN blocks ON readings.block = block_id
-      WHERE dayIndex = ${sanctoralIndex}
+      WHERE day_index = ${sanctoralIndex}
       ORDER BY readings.id ASC
     `
         const grouped = rows.reduce((acc, row) => {

@@ -1,4 +1,4 @@
-import { db } from "../utils/database"
+import { db } from "../utils/pg_database"
 
 export const readings = {
     async getScriptureReading(id) {
