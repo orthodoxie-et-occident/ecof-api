@@ -18,13 +18,13 @@
 
 `ecof-api` is the backend serving the [ecof-app](https://github.com/jrc0de/ecof-app) mobile application. It provides parish data, the liturgical calendar, saints' lives (vita), daily readings, the synaxarion, news, and other content consumed by the app.
 
-The API is built with [Hono](https://hono.dev/) on the [Bun](https://bun.sh/) runtime, and stores its data in MySQL.
+The API is built with [Hono](https://hono.dev/) on the [Bun](https://bun.sh/) runtime, and stores its data in PostgreSQL.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
-    DB[(MySQL)] --> API["ecof-api"]
+    DB[(PostgreSQL)] --> API["ecof-api"]
     API --> APP["ecof-app"]
     APP --> WEB["Web"]
     APP --> AND["Android"]
@@ -66,7 +66,7 @@ All routes are prefixed with `/api`.
 | -------------------- | -------------------------------------------------------------------------------- |
 | Runtime              | [Bun](https://bun.sh/)                                                           |
 | Framework            | [Hono](https://hono.dev/)                                                        |
-| Database             | MySQL                                                                            |
+| Database             | PostgreSQL                                                                            |
 | Calendar parsing     | [ical.js](https://github.com/kewisch/ical.js)                                    |
 | Markdown rendering   | [marked](https://marked.js.org/)                                                 |
 | Linting / formatting | [oxlint](https://oxc.rs/docs/guide/usage/linter.html) + [oxfmt](https://oxc.rs/) |
@@ -76,7 +76,7 @@ All routes are prefixed with `/api`.
 ### Prerequisites
 
 - [Bun](https://bun.sh/)
-- A MySQL database instance
+- A PostgreSQL database instance
 
 ### Installation
 
@@ -88,7 +88,7 @@ bun install
 
 ### Configuration
 
-The API connects to a MySQL database.
+The API connects to a PostgreSQL database.
 
 ### Development
 
