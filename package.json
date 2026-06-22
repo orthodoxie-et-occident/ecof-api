@@ -5,7 +5,8 @@
         "start": "bun run src/index.js",
         "lint": "oxlint",
         "lint:fix": "oxlint --fix",
-        "fmt": "oxfmt"
+        "fmt": "oxfmt",
+        "knip": "knip --no-exit-code"
     },
     "dependencies": {
         "hono": "^4.12.26",
@@ -13,6 +14,7 @@
         "marked": "^18.0.5"
     },
     "devDependencies": {
+        "knip": "^6.17.1",
         "oxfmt": "^0.55.0",
         "oxlint": "^1.70.0"
     }

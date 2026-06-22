@@ -15,14 +15,6 @@ export function formatYMDToISO({ year, month, day }) {
     return `${year}-${m}-${d}`
 }
 
-// Format Date to YYYY-MM-DD
-export function formatDateToYMD(date) {
-    const y = date.getFullYear()
-    const m = String(date.getMonth() + 1).padStart(2, "0")
-    const d = String(date.getDate()).padStart(2, "0")
-    return `${y}-${m}-${d}`
-}
-
 // Add or subtract days to YYYY-MM-DD date
 export function addDaysToISO(dateStr, days) {
     const { year, month, day } = formatISOToYMD(dateStr)

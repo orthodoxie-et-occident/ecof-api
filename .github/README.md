@@ -66,7 +66,7 @@ All routes are prefixed with `/api`.
 | -------------------- | -------------------------------------------------------------------------------- |
 | Runtime              | [Bun](https://bun.sh/)                                                           |
 | Framework            | [Hono](https://hono.dev/)                                                        |
-| Database             | PostgreSQL                                                                            |
+| Database             | PostgreSQL                                                                       |
 | Calendar parsing     | [ical.js](https://github.com/kewisch/ical.js)                                    |
 | Markdown rendering   | [marked](https://marked.js.org/)                                                 |
 | Linting / formatting | [oxlint](https://oxc.rs/docs/guide/usage/linter.html) + [oxfmt](https://oxc.rs/) |
