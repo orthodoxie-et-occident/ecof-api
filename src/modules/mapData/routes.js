@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { getMapData } from "../services/mapData"
+import { getMapData } from "./service"
 
 const mapData = new Hono()
 
