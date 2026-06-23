@@ -1,5 +1,5 @@
-import { synaxarVita } from "../repositories/vita.js"
-import { parseMarkdown } from "../utils/markdown.js"
+import { synaxarVita } from "./repository"
+import { parseMarkdown } from "../../utils/markdown.js"
 
 export async function getSaintLives(id) {
     const vita = await synaxarVita.getVita(id)

@@ -4,13 +4,12 @@ import { cors } from "hono/cors"
 import calendar from "./routes/calendar"
 import parish from "./routes/parish"
 import news from "./routes/news"
-import vita from "./routes/vita"
+import vita from "./modules/vita/routes"
 import reading from "./routes/reading"
 import synaxar from "./routes/synaxar"
 import images from "./routes/images"
 import privacy from "./routes/privacy"
 import support from "./routes/support"
-import monitoredVitas from "./routes/vitaMonitoring"
 import appConfigRouter from "./routes/appConfig"
 import mapData from "./modules/mapData/routes"
 
@@ -28,7 +27,6 @@ app.route("/api/synaxar", synaxar)
 app.route("/api/images", images)
 app.route("/api/privacy", privacy)
 app.route("/api/support", support)
-app.route("api/monitoring", monitoredVitas)
 app.route("/api/app-config", appConfigRouter)
 app.route("/api/map-data", mapData)
 
