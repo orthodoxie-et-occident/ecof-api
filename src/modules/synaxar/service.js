@@ -1,4 +1,4 @@
-import { synaxarSaints } from "../repositories/synaxar"
+import { synaxarSaints } from "./repository"
 
 export async function getSaints() {
     const saints = await synaxarSaints.getSaints()

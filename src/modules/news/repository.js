@@ -1,4 +1,4 @@
-import { db } from "../utils/pg_database"
+import { db } from "../../utils/pg_database"
 
 export const allNews = {
     async getNews() {

@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { getAppConfig } from "../services/appConfig"
+import { getAppConfig } from "./service"
 
 const router = new Hono()
 

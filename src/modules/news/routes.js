@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { getNews, getNewsById } from "../services/news.js"
+import { getNews, getNewsById } from "./service"
 
 const news = new Hono()
 

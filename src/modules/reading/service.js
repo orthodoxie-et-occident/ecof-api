@@ -1,5 +1,5 @@
-import { readings } from "../repositories/reading.js"
-import { applyFrenchTypography } from "../utils/typography.js"
+import { readings } from "./repository"
+import { applyFrenchTypography } from "../../utils/typography"
 
 export async function getReading(id) {
     const reading = await readings.getScriptureReading(id)

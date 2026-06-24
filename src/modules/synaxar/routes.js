@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { getSaints } from "../services/synaxar.js"
+import { getSaints } from "./service.js"
 
 const synaxar = new Hono()
 
