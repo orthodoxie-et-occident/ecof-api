@@ -30,6 +30,18 @@ app.route("/api/support", support)
 app.route("/api/app-config", appConfigRouter)
 app.route("/api/map-data", mapData)
 
+app.route("/calendar", calendar)
+app.route("/parish", parish)
+app.route("/vita", vita)
+app.route("/news", news)
+app.route("/reading", reading)
+app.route("/synaxar", synaxar)
+app.route("/images", images)
+app.route("/privacy", privacy)
+app.route("/support", support)
+app.route("/app-config", appConfigRouter)
+app.route("/map-data", mapData)
+
 export default {
     port: process.env.PORT || 3000,
     fetch: app.fetch,
