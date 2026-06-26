@@ -8,7 +8,7 @@ images.use(
     "/*",
     serveStatic({
         root: "./src",
-        rewriteRequestPath: (path) => path.replace(/^\/api\/images/, "/assets"),
+        rewriteRequestPath: (path) => path.replace(/^\/api\/images/, "../../assets"),
     }),
 )
 
