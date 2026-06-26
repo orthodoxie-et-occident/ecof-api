@@ -3,10 +3,13 @@ import { serveStatic } from "hono/bun"
 
 const images = new Hono()
 
+const root = `${import.meta.dir}/../../assets`.replace(/\\/g, "/")
+
 images.use(
     "/*",
     serveStatic({
-        root: `${import.meta.dir}/../../assets`,
+        root,
+        rewriteRequestPath: (path) => path.replace(/^\/images/, ""),
     }),
 )
 
