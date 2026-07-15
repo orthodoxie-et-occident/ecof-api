@@ -13,12 +13,12 @@ export const synaxarSaints = {
 
     async getSaintsByDate(mois, jour) {
         const rows = await db`
-                SELECT saint
+                SELECT saint, id
                 FROM synaxar
                 WHERE calendrier != 2
                 AND mois = ${mois}
                 AND jour = ${jour}
-                ORDER BY saint ASC
+                ORDER BY id ASC
             `
         return rows || null
     },
