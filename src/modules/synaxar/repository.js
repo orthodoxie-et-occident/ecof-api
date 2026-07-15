@@ -10,4 +10,16 @@ export const synaxarSaints = {
             `
         return rows || null
     },
+
+    async getSaintsByDate(mois, jour) {
+        const rows = await db`
+                SELECT saint
+                FROM synaxar
+                WHERE calendrier != 2
+                AND mois = ${mois}
+                AND jour = ${jour}
+                ORDER BY saint ASC
+            `
+        return rows || null
+    },
 }
