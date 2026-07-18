@@ -3,7 +3,7 @@ import { db } from "../../utils/pg_database"
 export const allNews = {
     async getNews() {
         const rows = await db`
-      SELECT id, title, author, slug, published_at
+      SELECT id, title, author, slug, slug_id, published_at
       FROM news
       ORDER BY published_at DESC
     `
