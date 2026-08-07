@@ -6,7 +6,8 @@ export const calendar = {
       SELECT principal, prefixe, saint, id
       FROM synaxar
       WHERE mois = ${month} AND jour = ${day}
-        AND principal IN (0, 1) AND calendrier != 0
+    AND principal IN (0, 1) AND calendrier != 0
+    ORDER by id
     `
         return rows || []
     },

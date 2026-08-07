@@ -9,13 +9,13 @@
         "knip": "knip"
     },
     "dependencies": {
-        "hono": "^4.12.33",
+        "hono": "^4.13.1",
         "ical.js": "^2.2.1",
-        "marked": "^18.0.7"
+        "marked": "^18.0.9"
     },
     "devDependencies": {
-        "knip": "^6.31.0",
-        "oxfmt": "^0.61.0",
-        "oxlint": "^1.76.0"
+        "knip": "^6.32.0",
+        "oxfmt": "^0.62.0",
+        "oxlint": "^1.77.0"
     }
 }
