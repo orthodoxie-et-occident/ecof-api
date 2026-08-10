@@ -34,7 +34,22 @@ function cleanDescription(raw) {
         .trim()
 }
 
+function pad2(n) {
+    return String(n).padStart(2, "0")
+}
+
 function icalTimeToString(t) {
+    // Événement "journée entière" (VALUE=DATE) : la date est "flottante",
+    // sans fuseau horaire associé. Il ne faut surtout pas passer par
+    // toJSDate() + Intl.DateTimeFormat("Europe/Paris"), car toJSDate()
+    // ancre la date à minuit UTC, et la reformater en Europe/Paris
+    // ajoute ensuite 1h ou 2h (décalage UTC -> local) : minuit devient
+    // 01:00 ou 02:00 au lieu de rester à 00:00. On lit donc directement
+    // year/month/day sur l'objet ICAL.Time, sans conversion.
+    if (t.isDate) {
+        return `${t.year}-${pad2(t.month)}-${pad2(t.day)}T00:00:00`
+    }
+
     const jsDate = t.toJSDate()
     const parts = new Intl.DateTimeFormat("fr-FR", {
         timeZone: "Europe/Paris",
