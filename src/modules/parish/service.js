@@ -50,6 +50,34 @@ function icalTimeToString(t) {
     return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}:${get("second")}`
 }
 
+/**
+ * Construit l'objet événement final à partir des dates ICAL.Time brutes.
+ * Pour les événements "journée entière" (VALUE=DATE, sans heure), le DTEND
+ * fourni par la norme iCal est EXCLUSIF (le jour suivant le dernier jour de
+ * l'événement). On retire donc 1 jour pour obtenir une date de fin
+ * "affichable" et inclusive, et on expose un flag `allDay` pour que le
+ * frontend puisse traiter ces événements différemment si besoin.
+ */
+function buildEvent(event, startTime, endTime) {
+    const isAllDay = startTime.isDate
+
+    let displayEndTime = endTime
+    if (isAllDay) {
+        displayEndTime = endTime.clone()
+        displayEndTime.addDuration(ICAL.Duration.fromString("-P1D"))
+    }
+
+    return {
+        title: event.summary,
+        start: icalTimeToString(startTime),
+        end: icalTimeToString(displayEndTime),
+        allDay: isAllDay,
+        description: cleanDescription(event.description),
+        location: event.location,
+        uid: event.uid,
+    }
+}
+
 export async function getParishInfo(city) {
     const url = calendars[city]
 
@@ -95,24 +123,10 @@ export async function getParishInfo(city) {
 
                 if (endStr < nowString) continue
 
-                allEvents.push({
-                    title: event.summary,
-                    start: startStr,
-                    end: endStr,
-                    description: cleanDescription(event.description),
-                    location: event.location,
-                    uid: event.uid,
-                })
+                allEvents.push(buildEvent(event, next, endTime))
             }
         } else {
-            allEvents.push({
-                title: event.summary,
-                start: icalTimeToString(event.startDate),
-                end: icalTimeToString(event.endDate),
-                description: cleanDescription(event.description),
-                location: event.location,
-                uid: event.uid,
-            })
+            allEvents.push(buildEvent(event, event.startDate, event.endDate))
         }
     }
 

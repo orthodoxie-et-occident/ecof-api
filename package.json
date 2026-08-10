@@ -14,8 +14,8 @@
         "marked": "^18.0.9"
     },
     "devDependencies": {
-        "knip": "^6.32.0",
-        "oxfmt": "^0.62.0",
-        "oxlint": "^1.77.0"
+        "knip": "^6.32.1",
+        "oxfmt": "^0.63.0",
+        "oxlint": "^1.78.0"
     }
 }
