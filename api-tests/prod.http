@@ -1,0 +1,29 @@
+### CALENDAR
+GET api.ecof.app/calendar/2026-07-30
+
+### PARISHES
+GET api.ecof.app/parish/poitiers
+
+### SYNAXAR
+GET api.ecof.app/synaxar
+
+### VITA
+GET api.ecof.app/vita/1478
+
+### READING
+GET api.ecof.app/reading/872
+
+### NEWS
+GET api.ecof.app/news
+
+### NEWS DETAIL
+GET api.ecof.app/news/8
+
+### PRIVACY
+GET api.ecof.app/privacy
+
+### MAP
+GET api.ecof.app/map-data
+
+### IMAGES
+GET api.ecof.app/images/ecof-yellow.png
