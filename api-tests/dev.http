@@ -1,29 +1,29 @@
 ### CALENDAR
-GET localhost:3000/calendar/2026-07-30
+GET http://localhost:3000/calendar/2026-07-30
 
 ### PARISHES
-GET localhost:3000/parish/poitiers
+GET http://localhost:3000/parish/paris
 
 ### SYNAXAR
-GET localhost:3000/synaxar
+GET http://localhost:3000/synaxar
 
 ### VITA
-GET localhost:3000/vita/1478
+GET http://localhost:3000/vita/1478
 
 ### READING
-GET localhost:3000/reading/872
+GET http://localhost:3000/reading/872
 
 ### NEWS
-GET localhost:3000/news
+GET http://localhost:3000/news
 
 ### NEWS DETAIL
-GET localhost:3000/news/8
+GET http://localhost:3000/news/8
 
 ### PRIVACY
-GET localhost:3000/privacy
+GET http://localhost:3000/privacy
 
 ### MAP
-GET localhost:3000/map-data
+GET http://localhost:3000/map-data
 
 ### IMAGES
-GET localhost:3000/images/ecof-yellow.png
+GET http://localhost:3000/images/ecof-yellow.png

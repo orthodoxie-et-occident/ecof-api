@@ -2,7 +2,7 @@
 GET api.ecof.app/calendar/2026-07-30
 
 ### PARISHES
-GET api.ecof.app/parish/poitiers
+GET api.ecof.app/parish/paris
 
 ### SYNAXAR
 GET api.ecof.app/synaxar

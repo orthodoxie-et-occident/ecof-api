@@ -39,13 +39,6 @@ function pad2(n) {
 }
 
 function icalTimeToString(t) {
-    // Événement "journée entière" (VALUE=DATE) : la date est "flottante",
-    // sans fuseau horaire associé. Il ne faut surtout pas passer par
-    // toJSDate() + Intl.DateTimeFormat("Europe/Paris"), car toJSDate()
-    // ancre la date à minuit UTC, et la reformater en Europe/Paris
-    // ajoute ensuite 1h ou 2h (décalage UTC -> local) : minuit devient
-    // 01:00 ou 02:00 au lieu de rester à 00:00. On lit donc directement
-    // year/month/day sur l'objet ICAL.Time, sans conversion.
     if (t.isDate) {
         return `${t.year}-${pad2(t.month)}-${pad2(t.day)}T00:00:00`
     }
@@ -65,14 +58,6 @@ function icalTimeToString(t) {
     return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}:${get("second")}`
 }
 
-/**
- * Construit l'objet événement final à partir des dates ICAL.Time brutes.
- * Pour les événements "journée entière" (VALUE=DATE, sans heure), le DTEND
- * fourni par la norme iCal est EXCLUSIF (le jour suivant le dernier jour de
- * l'événement). On retire donc 1 jour pour obtenir une date de fin
- * "affichable" et inclusive, et on expose un flag `allDay` pour que le
- * frontend puisse traiter ces événements différemment si besoin.
- */
 function buildEvent(event, startTime, endTime) {
     const isAllDay = startTime.isDate
 
@@ -115,16 +100,38 @@ export async function getParishInfo(city) {
 
     const allEvents = []
 
+    const groups = new Map()
     for (const vevent of vevents) {
-        const event = new ICAL.Event(vevent)
+        const uid = vevent.getFirstPropertyValue("uid")
+        if (!groups.has(uid)) groups.set(uid, { master: null, overrides: [] })
+        const group = groups.get(uid)
+        if (vevent.hasProperty("recurrence-id")) {
+            group.overrides.push(vevent)
+        } else {
+            group.master = vevent
+        }
+    }
+
+    for (const { master, overrides } of groups.values()) {
+        if (!master) {
+            for (const o of overrides) {
+                const ev = new ICAL.Event(o)
+                const endStr = icalTimeToString(ev.endDate)
+                if (endStr < nowString) continue
+                allEvents.push(buildEvent(ev, ev.startDate, ev.endDate))
+            }
+            continue
+        }
+
+        const event = new ICAL.Event(master, {
+            exceptions: overrides.map((o) => new ICAL.Event(o)),
+        })
 
         if (event.isRecurring()) {
             const expand = new ICAL.RecurExpansion({
-                component: vevent,
+                component: master,
                 dtstart: event.startDate,
             })
-
-            const duration = event.endDate.subtractDate(event.startDate)
 
             let next = null
             while ((next = expand.next())) {
@@ -132,13 +139,12 @@ export async function getParishInfo(city) {
 
                 if (startStr > maxDateString) break
 
-                const endTime = next.clone()
-                endTime.addDuration(duration)
-                const endStr = icalTimeToString(endTime)
+                const details = event.getOccurrenceDetails(next)
+                const endStr = icalTimeToString(details.endDate)
 
                 if (endStr < nowString) continue
 
-                allEvents.push(buildEvent(event, next, endTime))
+                allEvents.push(buildEvent(details.item, details.startDate, details.endDate))
             }
         } else {
             allEvents.push(buildEvent(event, event.startDate, event.endDate))
