@@ -1,5 +1,5 @@
 ### CALENDAR
-GET http://localhost:3000/calendar/2026-07-30
+GET http://localhost:3000/calendar/2026-09-09
 
 ### PARISHES
 GET http://localhost:3000/parish/paris
@@ -8,7 +8,7 @@ GET http://localhost:3000/parish/paris
 GET http://localhost:3000/synaxar
 
 ### VITA
-GET http://localhost:3000/vita/1478
+GET http://localhost:3000/vita/21
 
 ### READING
 GET http://localhost:3000/reading/872

@@ -9,11 +9,12 @@ function buildImageUrl(id) {
 export const synaxarVita = {
     async getVita(id) {
         const rows = await db`
-          SELECT v_short as vie_b, v_long as vita_long, v_liturgy as vita_liturgy,
-                 has_img, mois, jour,
-                 prefixe, saint
-          FROM synaxar
-          WHERE id = ${id}
+          SELECT v.v_short as vie_b, v.v_long as vita_long, v.v_liturgy as vita_liturgy,
+                 v.has_img, s.mois, s.jour,
+                 s.prefixe, s.saint
+          FROM synaxar s
+          LEFT JOIN vita v ON v.vies_id = s.vies_id
+          WHERE s.vies_id = ${id}
         `
         const row = rows[0]
         if (!row) return null

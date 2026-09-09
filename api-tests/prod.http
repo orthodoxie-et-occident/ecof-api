@@ -8,7 +8,7 @@ GET api.ecof.app/parish/paris
 GET api.ecof.app/synaxar
 
 ### VITA
-GET api.ecof.app/vita/1478
+GET api.ecof.app/vita/21
 
 ### READING
 GET api.ecof.app/reading/872
