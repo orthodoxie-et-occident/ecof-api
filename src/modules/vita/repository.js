@@ -12,7 +12,7 @@ export const synaxarVita = {
           SELECT v.v_short as vie_b, v.v_long as vita_long, v.v_liturgy as vita_liturgy,
                  v.has_img, s.mois, s.jour,
                  s.prefixe, s.saint
-          FROM synaxar s
+          FROM sanctoral s
           LEFT JOIN vita v ON v.vies_id = s.vies_id
           WHERE s.vies_id = ${id}
         `

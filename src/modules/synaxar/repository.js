@@ -4,7 +4,7 @@ export const synaxarSaints = {
     async getSaints() {
         const rows = await db`
                 SELECT saint, vies_id, id
-                FROM synaxar
+                FROM sanctoral
                 WHERE calendrier != 2
                 ORDER BY saint ASC
             `
@@ -14,7 +14,7 @@ export const synaxarSaints = {
     async getSaintsByDate(mois, jour) {
         const rows = await db`
                 SELECT saint, id
-                FROM synaxar
+                FROM sanctoral
                 WHERE calendrier != 2
                 AND mois = ${mois}
                 AND jour = ${jour}

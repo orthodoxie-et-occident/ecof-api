@@ -4,7 +4,7 @@ export const calendar = {
     async getSynaxar(month, day) {
         const rows = await db`
       SELECT principal, prefixe, saint, id as index, vies_id as id
-      FROM synaxar
+      FROM sanctoral
       WHERE mois = ${month} AND jour = ${day}
     AND principal IN (0, 1) AND calendrier != 0
     ORDER by index
