@@ -8,7 +8,7 @@
         "fmt": "oxfmt"
     },
     "dependencies": {
-        "hono": "^4.13.7",
+        "hono": "^4.13.8",
         "ical.js": "^2.2.1",
         "marked": "^18.0.13"
     },
