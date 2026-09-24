@@ -12,15 +12,15 @@
     "knip": "knip"
   },
   "dependencies": {
-    "hono": "^4.13.8",
+    "hono": "^4.13.9",
     "node-ical": "^0.27.2"
   },
   "devDependencies": {
     "@types/bun": "^1.4.2",
-    "@types/node": "^26.6.0",
-    "knip": "^6.35.1",
-    "oxfmt": "^0.68.0",
-    "oxlint": "^1.83.0"
+    "@types/node": "^26.6.2",
+    "knip": "^6.38.0",
+    "oxfmt": "^0.70.0",
+    "oxlint": "^1.85.0"
   },
   "peerDependencies": {
     "typescript": "^7.0.2"

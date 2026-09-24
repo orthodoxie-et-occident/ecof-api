@@ -1,4 +1,5 @@
 import { Hono } from "hono"
+import { compress } from "hono/compress"
 import { cors } from "hono/cors"
 import { synaxarRoutes } from "./features/synaxar/synaxar.routes"
 import { mapRoutes } from "./features/map/map.routes"
@@ -10,6 +11,7 @@ import { calendarRoutes } from "./features/liturgical-calendar/liturgical-calend
 const app = new Hono()
 
 app.use("*", cors())
+app.use("*", compress())
 
 app.route("/synaxar", synaxarRoutes)
 app.route("/map", mapRoutes)
