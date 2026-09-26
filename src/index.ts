@@ -7,6 +7,7 @@ import { readingRoutes } from "./features/reading/reading.routes"
 import { newsRoutes } from "./features/news-section/news-section.routes"
 import { parishRoutes } from "./features/parish/parish.routes"
 import { calendarRoutes } from "./features/liturgical-calendar/liturgical-calendar.route"
+import { versionRoutes } from "./features/version/version.routes"
 
 const app = new Hono()
 
@@ -19,5 +20,6 @@ app.route("/reading", readingRoutes)
 app.route("/news", newsRoutes)
 app.route("/parish", parishRoutes)
 app.route("/calendar", calendarRoutes)
+app.route("/version", versionRoutes)
 
 export default app
