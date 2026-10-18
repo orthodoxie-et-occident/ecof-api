@@ -3,7 +3,9 @@ import { applyFrenchTypography } from "./typography"
 export function mdToHtml(text: string | null | undefined): string | null {
   if (!text) return null
 
-  const html = Bun.markdown.html(text)
+  const html = Bun.markdown.html(text, {
+    autolinks: { email: true, url: false, www: false },
+  })
   const withDimensions = addImageDimensions(html)
   const withCaptions = addFigcaptions(withDimensions)
   const unwrapped = unwrapFigureFromParagraph(withCaptions)
