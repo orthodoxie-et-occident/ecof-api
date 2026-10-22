@@ -178,7 +178,9 @@ export async function getParishInfo(city: string): Promise<ParishInfo> {
         )
       }
     } else {
-      const isFullDay = Boolean((component.start as { dateOnly?: true } | undefined)?.dateOnly)
+      const isFullDay = Boolean(
+        (component.start as { dateOnly?: true } | undefined)?.dateOnly,
+      )
       allEvents.push(
         buildEvent({
           summary: component.summary,

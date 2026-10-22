@@ -27,7 +27,9 @@ export function getTemporalIndex(dateStr: string): number {
     dayIndex = penultimateSundayAfterPentecost.until(date, {
       largestUnit: "days",
     }).days
-  } else if (Temporal.PlainDate.compare(date, sundayInTheOctaveOfChristmas) >= 0) {
+  } else if (
+    Temporal.PlainDate.compare(date, sundayInTheOctaveOfChristmas) >= 0
+  ) {
     seasonIndex = 1500
     dayIndex =
       sundayInTheOctaveOfChristmas.until(date, {
@@ -96,7 +98,8 @@ function getLiturgicalDates(year: number) {
 
   // Sunday in the Octave of Christmas, or Christmas Day if it falls on a Sunday, for the previous year
   const previousSundayInTheOctaveOfChristmas = previousChristmas.add({
-    days: previousChristmas.dayOfWeek === 7 ? 0 : 7 - previousChristmas.dayOfWeek,
+    days:
+      previousChristmas.dayOfWeek === 7 ? 0 : 7 - previousChristmas.dayOfWeek,
   })
 
   return {

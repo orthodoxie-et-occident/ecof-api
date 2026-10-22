@@ -19,7 +19,10 @@ export async function getTemporal(index: number) {
   return rows || []
 }
 
-export async function getReadings(temporalIndex: number, sanctoralIndex: number) {
+export async function getReadings(
+  temporalIndex: number,
+  sanctoralIndex: number,
+) {
   const rows = await db`
       SELECT readings.id, readings.book_txt, blocks.block_id, blocks.block_title
       FROM readings 

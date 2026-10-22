@@ -39,7 +39,9 @@ function applyTypographyOutsideTags(html: string): string {
   return html
     .split(/(<[^>]+>)/g)
     .map((segment) =>
-      segment.startsWith("<") ? segment : (applyFrenchTypography(segment) ?? segment),
+      segment.startsWith("<")
+        ? segment
+        : (applyFrenchTypography(segment) ?? segment),
     )
     .join("")
 }

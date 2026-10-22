@@ -1,5 +1,12 @@
-import { getSanctoral, getTemporal, getReadings } from "./liturgical-calendar.repository"
-import { getTemporalIndex, getSanctoralIndex } from "./liturgical-calendar.utils"
+import {
+  getSanctoral,
+  getTemporal,
+  getReadings,
+} from "./liturgical-calendar.repository"
+import {
+  getTemporalIndex,
+  getSanctoralIndex,
+} from "./liturgical-calendar.utils"
 
 export async function getCalendarData(date: string) {
   const [, month, day] = date.split("-").map(Number) as [number, number, number]
@@ -15,12 +22,20 @@ export async function getCalendarData(date: string) {
   }
 }
 
-type Reading = { id: number; book_txt: string; block_id: number; block_title: string }
+type Reading = {
+  id: number
+  book_txt: string
+  block_id: number
+  block_title: string
+}
 
 function groupReadingsByBlock(readings: Reading[]) {
   const grouped = new Map<
     number,
-    { block_title: string; readings: Omit<Reading, "block_id" | "block_title">[] }
+    {
+      block_title: string
+      readings: Omit<Reading, "block_id" | "block_title">[]
+    }
   >()
 
   for (const { block_id, block_title, ...reading } of readings) {
