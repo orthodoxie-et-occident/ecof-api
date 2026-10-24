@@ -1,20 +1,42 @@
 import { describe, expect, test } from "bun:test"
-import { getEasterDate } from "../src/features/liturgical-calendar/liturgical-calendar.utils"
+import { getLiturgicalDates } from "../src/features/liturgical-calendar/liturgical-calendar.utils"
 
-describe("getEasterDate", () => {
-  test("returns Easter Sunday for 2022", () => {
-    expect(getEasterDate(2021)).toEqual(Temporal.PlainDate.from("2021-04-04"))
-  })
-  test("returns Easter Sunday for 2023", () => {
-    expect(getEasterDate(2023)).toEqual(Temporal.PlainDate.from("2023-04-09"))
-  })
-  test("returns Easter Sunday for 2024", () => {
-    expect(getEasterDate(2024)).toEqual(Temporal.PlainDate.from("2024-03-31"))
-  })
-  test("returns Easter Sunday for 2025", () => {
-    expect(getEasterDate(2025)).toEqual(Temporal.PlainDate.from("2025-04-20"))
-  })
-  test("returns Easter Sunday for 2026", () => {
-    expect(getEasterDate(2026)).toEqual(Temporal.PlainDate.from("2026-04-05"))
-  })
+const cases = [
+  {
+    year: 2023,
+    easter: "2023-04-09",
+    penultimateSundayAfterPentecost: "2023-11-05",
+    sundayInTheOctaveOfChristmas: "2023-12-31",
+  },
+  {
+    year: 2024,
+    easter: "2024-03-31",
+    penultimateSundayAfterPentecost: "2024-11-03",
+    sundayInTheOctaveOfChristmas: "2024-12-29",
+  },
+  {
+    year: 2025,
+    easter: "2025-04-20",
+    penultimateSundayAfterPentecost: "2025-11-02",
+    sundayInTheOctaveOfChristmas: "2025-12-28",
+  },
+  {
+    year: 2026,
+    easter: "2026-04-05",
+    penultimateSundayAfterPentecost: "2026-11-01",
+    sundayInTheOctaveOfChristmas: "2026-12-27",
+  },
+]
+
+describe("getLiturgicalDates", () => {
+  for (const { year, ...expected } of cases) {
+    describe(year, () => {
+      const actual = getLiturgicalDates(year)
+      for (const [key, value] of Object.entries(expected)) {
+        test(key, () => {
+          expect(actual[key as keyof typeof actual].toString()).toBe(value)
+        })
+      }
+    })
+  }
 })

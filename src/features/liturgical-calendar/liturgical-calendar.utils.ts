@@ -64,7 +64,7 @@ export function getSanctoralIndex(month: number, day: number) {
 /**
  * Return all liturgical key dates for a given year
  */
-function getLiturgicalDates(year: number) {
+export function getLiturgicalDates(year: number) {
   // Easter Sunday
   const easter = getEasterDate(year)
   // Septuagesima Sunday 9 weeks before Easter Sunday
@@ -115,7 +115,7 @@ function getLiturgicalDates(year: number) {
 /**
  * Return Easter date for a given year
  */
-export function getEasterDate(year: number): Temporal.PlainDate {
+function getEasterDate(year: number): Temporal.PlainDate {
   const n = year % 19
   const c = Math.floor(year / 100)
   const u = year % 100
