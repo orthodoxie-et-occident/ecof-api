@@ -11,14 +11,14 @@
     "knip": "knip"
   },
   "dependencies": {
-    "hono": "^4.13.13",
+    "hono": "^4.13.16",
     "node-ical": "^0.27.3"
   },
   "devDependencies": {
     "@types/bun": "^1.4.4",
-    "@types/node": "^26.6.5",
-    "knip": "^6.43.0",
-    "oxlint": "^1.89.0"
+    "@types/node": "^26.6.6",
+    "knip": "^6.44.1",
+    "oxlint": "^1.90.0"
   },
   "engines": {
     "bun": "1.4.4"

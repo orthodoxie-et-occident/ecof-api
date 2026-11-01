@@ -1,6 +1,7 @@
 // LITURGICAL CALENDAR UTILITY FUNCTIONS
 // getTemporalIndex(date)
 // getSanctoralIndex(date)
+// getSpecificIndex(date)
 // getLiturgicalDates(year)
 // getEasterDate(year)
 
@@ -62,6 +63,28 @@ export function getSanctoralIndex(month: number, day: number) {
 }
 
 /**
+ * Return specific index for a given date
+ */
+export function getSpecificIndex(dateStr: string): number {
+  const date = Temporal.PlainDate.from(dateStr)
+  const { summerEmberDays, autumnEmberDays } = getLiturgicalDates(date.year)
+
+  const specials: [Temporal.PlainDate, number][] = [
+    [summerEmberDays.wednesday, 3001],
+    [summerEmberDays.friday, 3002],
+    [summerEmberDays.saturday, 3003],
+    [autumnEmberDays.wednesday, 3004],
+    [autumnEmberDays.friday, 3005],
+    [autumnEmberDays.saturday, 3006],
+  ]
+
+  for (const [specialDate, index] of specials) {
+    if (Temporal.PlainDate.compare(date, specialDate) === 0) return index
+  }
+  return 0
+}
+
+/**
  * Return all liturgical key dates for a given year
  */
 export function getLiturgicalDates(year: number) {
@@ -102,6 +125,30 @@ export function getLiturgicalDates(year: number) {
       previousChristmas.dayOfWeek === 7 ? 0 : 7 - previousChristmas.dayOfWeek,
   })
 
+  // Summer Ember Days: Wed, Fri, Sat preceding the summer solstice (June 21)
+  // Wednesday = last Wednesday strictly before June 21
+  const summerSolstice = Temporal.PlainDate.from({ year, month: 6, day: 21 })
+  const summerWednesday = summerSolstice.subtract({
+    days: (summerSolstice.dayOfWeek - 3 + 7) % 7 || 7,
+  })
+  const summerEmberDays = {
+    wednesday: summerWednesday,
+    friday: summerWednesday.add({ days: 2 }),
+    saturday: summerWednesday.add({ days: 3 }),
+  }
+
+  // Autumn Ember Days: Wed, Fri, Sat following the Exaltation of the Cross (Sept 14)
+  // Wednesday = first Wednesday strictly after September 14
+  const holyCross = Temporal.PlainDate.from({ year, month: 9, day: 14 })
+  const autumnWednesday = holyCross.add({
+    days: (3 - holyCross.dayOfWeek + 7) % 7 || 7,
+  })
+  const autumnEmberDays = {
+    wednesday: autumnWednesday,
+    friday: autumnWednesday.add({ days: 2 }),
+    saturday: autumnWednesday.add({ days: 3 }),
+  }
+
   return {
     easter,
     septuagesimaSunday,
@@ -109,6 +156,8 @@ export function getLiturgicalDates(year: number) {
     penultimateSundayAfterPentecost,
     sundayInTheOctaveOfChristmas,
     previousSundayInTheOctaveOfChristmas,
+    summerEmberDays,
+    autumnEmberDays,
   }
 }
 
