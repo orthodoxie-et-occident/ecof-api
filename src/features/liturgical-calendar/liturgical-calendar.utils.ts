@@ -67,15 +67,15 @@ export function getSanctoralIndex(month: number, day: number) {
  */
 export function getSpecificIndex(dateStr: string): number {
   const date = Temporal.PlainDate.from(dateStr)
-  const { summerEmberDays, autumnEmberDays } = getLiturgicalDates(date.year)
+  const d = getLiturgicalDates(date.year)
 
   const specials: [Temporal.PlainDate, number][] = [
-    [summerEmberDays.wednesday, 3001],
-    [summerEmberDays.friday, 3002],
-    [summerEmberDays.saturday, 3003],
-    [autumnEmberDays.wednesday, 3004],
-    [autumnEmberDays.friday, 3005],
-    [autumnEmberDays.saturday, 3006],
+    [d.emberSummerWednesday, 3001],
+    [d.emberSummerFriday, 3002],
+    [d.emberSummerSaturday, 3003],
+    [d.emberAutumnWednesday, 3004],
+    [d.emberAutumnFriday, 3005],
+    [d.emberAutumnSaturday, 3006],
   ]
 
   for (const [specialDate, index] of specials) {
@@ -131,11 +131,6 @@ export function getLiturgicalDates(year: number) {
   const summerWednesday = summerSolstice.subtract({
     days: (summerSolstice.dayOfWeek - 3 + 7) % 7 || 7,
   })
-  const summerEmberDays = {
-    wednesday: summerWednesday,
-    friday: summerWednesday.add({ days: 2 }),
-    saturday: summerWednesday.add({ days: 3 }),
-  }
 
   // Autumn Ember Days: Wed, Fri, Sat following the Exaltation of the Cross (Sept 14)
   // Wednesday = first Wednesday strictly after September 14
@@ -143,11 +138,6 @@ export function getLiturgicalDates(year: number) {
   const autumnWednesday = holyCross.add({
     days: (3 - holyCross.dayOfWeek + 7) % 7 || 7,
   })
-  const autumnEmberDays = {
-    wednesday: autumnWednesday,
-    friday: autumnWednesday.add({ days: 2 }),
-    saturday: autumnWednesday.add({ days: 3 }),
-  }
 
   return {
     easter,
@@ -156,8 +146,12 @@ export function getLiturgicalDates(year: number) {
     penultimateSundayAfterPentecost,
     sundayInTheOctaveOfChristmas,
     previousSundayInTheOctaveOfChristmas,
-    summerEmberDays,
-    autumnEmberDays,
+    emberSummerWednesday: summerWednesday,
+    emberSummerFriday: summerWednesday.add({ days: 2 }),
+    emberSummerSaturday: summerWednesday.add({ days: 3 }),
+    emberAutumnWednesday: autumnWednesday,
+    emberAutumnFriday: autumnWednesday.add({ days: 2 }),
+    emberAutumnSaturday: autumnWednesday.add({ days: 3 }),
   }
 }
 
