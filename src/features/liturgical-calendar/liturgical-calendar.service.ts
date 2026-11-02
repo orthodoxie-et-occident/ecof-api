@@ -6,18 +6,26 @@ import {
 import {
   getTemporalIndex,
   getSanctoralIndex,
+  getSpecificIndex,
 } from "./liturgical-calendar.utils"
 
 export async function getCalendarData(date: string) {
   const [, month, day] = date.split("-").map(Number) as [number, number, number]
   const temporalIndex = getTemporalIndex(date)
   const sanctoralIndex = getSanctoralIndex(month, day)
+  const specificIndex = getSpecificIndex(date)
   const sanctoralOfDay = await getSanctoral(sanctoralIndex)
   const temporalOfDay = await getTemporal(temporalIndex)
-  const readingsOfDay = await getReadings(temporalIndex, sanctoralIndex)
+  const specificOfDay = await getTemporal(specificIndex)
+  const readingsOfDay = await getReadings(
+    temporalIndex,
+    sanctoralIndex,
+    specificIndex,
+  )
   return {
     sanctoral: sanctoralOfDay,
     temporal: temporalOfDay,
+    specific: specificOfDay,
     readings: groupReadingsByBlock(readingsOfDay),
   }
 }

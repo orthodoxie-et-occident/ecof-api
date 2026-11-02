@@ -22,12 +22,13 @@ export async function getTemporal(index: number) {
 export async function getReadings(
   temporalIndex: number,
   sanctoralIndex: number,
+  specificIndex: number,
 ) {
   const rows = await db`
       SELECT readings.id, readings.book_txt, blocks.block_id, blocks.block_title
       FROM readings 
       JOIN blocks ON readings.block = blocks.block_id
-      WHERE day_index IN (${temporalIndex}, ${sanctoralIndex})
+      WHERE day_index IN (${temporalIndex}, ${sanctoralIndex}, ${specificIndex})
       ORDER BY readings.id ASC
     `
   return rows || null
