@@ -68,7 +68,6 @@ export function getSanctoralIndex(month: number, day: number) {
 export function getSpecificIndex(dateStr: string): number {
   const date = Temporal.PlainDate.from(dateStr)
   const d = getLiturgicalDates(date.year)
-
   const specials: [Temporal.PlainDate, number][] = [
     [d.emberSummerWednesday, 3001],
     [d.emberSummerFriday, 3002],
@@ -76,6 +75,12 @@ export function getSpecificIndex(dateStr: string): number {
     [d.emberAutumnWednesday, 3004],
     [d.emberAutumnFriday, 3005],
     [d.emberAutumnSaturday, 3006],
+    [d.easter.add({ weeks: 28 }), 3021],
+    [d.easter.add({ weeks: 29 }), 3022],
+    [d.easter.add({ weeks: 30 }), 3023],
+    [d.easter.add({ weeks: 31 }), 3024],
+    [d.easter.add({ weeks: 32 }), 3025],
+    [d.easter.add({ weeks: 33 }), 3026],
   ]
 
   for (const [specialDate, index] of specials) {
