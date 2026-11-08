@@ -23,11 +23,12 @@ export async function getCalendarData(date: string) {
   ])
 
   const specialTitle = special?.[0]?.title
-  if (specialTitle) temporal[0].title = specialTitle
 
   return {
     sanctoral,
-    temporal,
+    temporal: specialTitle
+      ? [{ ...temporal[0], title: specialTitle }]
+      : temporal,
     readings: groupReadingsByBlock(readings),
   }
 }
