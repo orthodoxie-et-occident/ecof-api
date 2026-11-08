@@ -68,24 +68,44 @@ export function getSanctoralIndex(month: number, day: number) {
 export function getSpecificIndex(dateStr: string): number {
   const date = Temporal.PlainDate.from(dateStr)
   const d = getLiturgicalDates(date.year)
-  const specials: [Temporal.PlainDate, number][] = [
-    [d.emberSummerWednesday, 3001],
-    [d.emberSummerFriday, 3002],
-    [d.emberSummerSaturday, 3003],
-    [d.emberAutumnWednesday, 3004],
-    [d.emberAutumnFriday, 3005],
-    [d.emberAutumnSaturday, 3006],
-    [d.easter.add({ weeks: 28 }), 3021],
-    [d.easter.add({ weeks: 29 }), 3022],
-    [d.easter.add({ weeks: 30 }), 3023],
-    [d.easter.add({ weeks: 31 }), 3024],
-    [d.easter.add({ weeks: 32 }), 3025],
-    [d.easter.add({ weeks: 33 }), 3026],
-  ]
-
-  for (const [specialDate, index] of specials) {
-    if (Temporal.PlainDate.compare(date, specialDate) === 0) return index
-  }
+  // Quatre-temps
+  if (date.equals(d.emberSummerWednesday)) return 3001
+  if (date.equals(d.emberSummerFriday)) return 3002
+  if (date.equals(d.emberSummerSaturday)) return 3003
+  if (date.equals(d.emberAutumnWednesday)) return 3004
+  if (date.equals(d.emberAutumnFriday)) return 3005
+  if (date.equals(d.emberAutumnSaturday)) return 3006
+  // Dernier dimanche après Pentecôte
+  if (
+    date.equals(d.easter.add({ weeks: 28 })) &&
+    date.equals(d.penultimateSundayAfterPentecost.add({ weeks: 1 }))
+  )
+    return 3021
+  if (
+    date.equals(d.easter.add({ weeks: 29 })) &&
+    date.equals(d.penultimateSundayAfterPentecost.add({ weeks: 1 }))
+  )
+    return 3022
+  if (
+    date.equals(d.easter.add({ weeks: 30 })) &&
+    date.equals(d.penultimateSundayAfterPentecost.add({ weeks: 1 }))
+  )
+    return 3023
+  if (
+    date.equals(d.easter.add({ weeks: 31 })) &&
+    date.equals(d.penultimateSundayAfterPentecost.add({ weeks: 1 }))
+  )
+    return 3024
+  if (
+    date.equals(d.easter.add({ weeks: 32 })) &&
+    date.equals(d.penultimateSundayAfterPentecost.add({ weeks: 1 }))
+  )
+    return 3025
+  if (
+    date.equals(d.easter.add({ weeks: 33 })) &&
+    date.equals(d.penultimateSundayAfterPentecost.add({ weeks: 1 }))
+  )
+    return 3026
   return 0
 }
 
