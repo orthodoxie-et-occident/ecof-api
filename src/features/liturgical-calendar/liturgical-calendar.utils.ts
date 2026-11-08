@@ -1,7 +1,7 @@
 // LITURGICAL CALENDAR UTILITY FUNCTIONS
 // getTemporalIndex(date)
 // getSanctoralIndex(date)
-// getSpecificIndex(date)
+// getSpecialIndex(date)
 // getLiturgicalDates(year)
 // getEasterDate(year)
 
@@ -63,9 +63,9 @@ export function getSanctoralIndex(month: number, day: number) {
 }
 
 /**
- * Return specific index for a given date
+ * Return special index for a given date
  */
-export function getSpecificIndex(dateStr: string): number {
+export function getSpecialIndex(dateStr: string): number {
   const date = Temporal.PlainDate.from(dateStr)
   const d = getLiturgicalDates(date.year)
   // Quatre-temps
